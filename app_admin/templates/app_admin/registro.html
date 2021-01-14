@@ -1,0 +1,93 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block titulo %}Registro de Pacientes {% endblock %}
+
+{% block nav-bar %} 
+    {{block.super}}
+    {% block nav-link-left %}
+    <!-- 
+        <li class="nav-link"> LINK2 </li>
+    -->
+    {% endblock %}
+{% endblock %}
+
+{% block contenido %} 
+<div class="d-flex justify-content-around">
+    <div class="col-sm-4">
+        <h2>Bienvenido: </h2>
+        <img class="img-fluid rounded d-block m-l-none" src="{% static 'img/undraw_personal_info_0okl.svg' %}"  alt="registro">
+    </div>
+   
+    <div class="col-sm-4">
+        <form action=""  method="post">
+            {% csrf_token %}
+            
+            {{form.as_table}}
+            <br>
+            <input class="btn btn-primary btn-block" type="submit" value="Crear">
+            
+        </form>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-md">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">RUN</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in registros %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{row.run}}</td>
+                    <td>{{row.nombre}}</td>
+                    <td>{{row.apellido}}</td>
+                    <td>{{row.edad}}</td>
+                    <td>{{row.f_nacimiento}}</td>
+                    <td>
+                        <a href="{% url 'app_admin:eliminar' row.run %}" type="submit" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    {% if registros.has_other_pages %}
+        <ul class="pagination">
+            {% if registros.has_previous %}
+                <li><a href="?page={{ registros.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in registros.paginator.page_range %}
+                {% if registros.number == i %}
+                    <li class="active"><span>{{ i }}- <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}-</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if registros.has_next %}
+                <li><a href="?page={{ registros.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{block.super}}
+{% endblock %}

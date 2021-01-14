@@ -1,0 +1,83 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block titulo %} Home {% endblock %}
+
+{% block nav-bar %} 
+    <nav class="navbar navbar-dark fixed-top bg-custom">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Bienvenid@: {{datos.nombre}}</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+      data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="{% url 'app_principal:principal' %}">Logout</a>
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav px-3">
+      <li class="nav-item">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{pacientes}} 
+            <input type = "submit" class="ml-2 btn btn-success btn-sm" value = "Ver"> 
+        </form>
+      </li>
+    </ul>
+    
+    </nav>
+{% endblock %}
+
+{% block sidebar %} {{ block.super }} {% endblock %}
+
+{% block datos-personales %}
+    <div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{% static 'appHome/julianne-moore.jpg' %}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{datos.nombre}} {{datos.apellido}}</h3>
+                <p class="h4"><small class="text-muted">RUT:</small>
+                    {{datos.run}}</p>
+                <p class="h4"><small class="text-muted">FECHA DE NACIMIENTO</small>
+                    {{datos.f_nacimiento}}</p>
+                <p class="h4"><small class="text-muted">EDAD:</small>
+                    {{datos.edad}}</p>
+                <br>
+                <h3 class="card-title">Datos de Contacto</h3>
+                <p class="h4"><small class="text-muted">DIRECCIÓN:</small>
+                    {{datos.direccion}}</p>
+                <p class="h4"><small class="text-muted">EMAIL:</small>
+                    {{datos.email}}</p>
+                <p class="h4"><small class="text-muted">TELÉFONO:</small>
+                    {{datos.telefono}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block patologias %}
+    <div class="card">
+    <h2 class="card-header">Patologías Asociadas</h2>
+    <div class="card-body">
+        <ul>
+            <li>
+                <p class="h5">Resistencia a la Insulina</p>
+            
+
+            </li>
+            
+        </ul>
+    </div>
+    </div>
+{% endblock %}
+
+
+
+{% block footer %}
+    {{block.super}}
+{% endblock %}

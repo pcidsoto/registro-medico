@@ -1,0 +1,31 @@
+/*CSS REGISTER PAGE*/
+
+body {
+  background: url(../img/background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.limiter {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+  }
+
+.register-container{
+    width: 800px;
+    background-color: white;
+    box-shadow: 10px 14px 5px 3px rgba(0,0,0,0.75);
+    border-radius: 0 50px 0 50px;
+    padding: 40px 55px 30px 55px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}

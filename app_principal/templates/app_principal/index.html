@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} SINARS {% endblock %}
+
+{% block nav-bar %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">SINARS</a>
+
+    <!-- Navigation Bar Hamburger-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false"
+        aria-controls="navigation" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- End Navigation Bar Hamburger -->
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    Login <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu">
+                    <form class="p-3" action=""  method="post">
+                        {% csrf_token %}
+                        {{ msg }}
+                        {{login_form.as_table}}
+                        <br>
+                        <input class="btn btn-primary btn-block" type="submit" value="Entrar">
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'app_admin:login' %}">Acceso Administrador</a>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right">
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success border-dark 
+                    font-weight-bold text-white my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
+    <!-- Navigation Links -->
+</nav>
+
+{% endblock %}
+
+{% block principal%}
+<!-- Section: Principal -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="jumbotron jumbotron-main">
+            <h2>SINARS</h2>
+            <h3>sistema de registro nacional de datos de salud de Chile</h3>
+        </div>
+    </div>
+</div>
+
+<!-- Section: Principal -->
+
+<!-- End Section: Principal -->
+<!-- End Section: Principal -->
+{% endblock %}
+
+{% block competencias %}
+
+<div class="row">
+    <h2>Noticias de Interés</h2>
+</div>
+<div class="row">
+    {% for elemento in noticias %}
+        {% for clave, valor in elemento.items %}
+        <div class="col-md-6 col-lg-3" style="background-color: whitesmoke;">
+            <div class="card">
+                <h2 class="card-header">{{valor.titulo}}</h2>
+                <div class="card-body">
+                    <h3 class="card-title">{{valor.subtitulo}}</h3>
+                    <p class="card-text">{{valor.contenido}}</p>
+                    <a href="#!" class="btn btn-dark">Ver mas</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+    {% endblock %}
+
+    {% block contacto %}
+
+    <!-- Section: Contacto -->
+    <div class="row">
+        <h2>Enlaces de Interés</h2>
+    </div>
+    <div class="row">
+        {% for enlace in enlaces %}
+            <div class="col-sm-3">
+                <a class="d-block" href='{{enlace.enlace}}'>
+                    <img class="img-fluid rounded d-block m-l-none" src="{% static enlace.logo %}"  alt="registro" >
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- End Section: Contacto -->
+
+    {% endblock %}
+
+    {% block footer %}
+
+    <p class="text-muted">&copy; 2020 Awakelab.</p>
+    <p class="text-muted">Grupo Full Stack Python</p>
+
+    {% endblock %}
+
+
+    {% block modals %}
+    <!-- MODAL FORMS -->
+    <div class="modal" id="profile-modal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="modal-title" id="profile-modal-label">Perfil</p>
+                </div>
+                <div class="modal-body">
+                    Perfil
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="settings-modal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="modal-title" id="settings-modal-label">Configuración</p>
+                </div>
+                <div class="modal-body">
+                    Configuración
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL FORMS -->
+    {% endblock%}

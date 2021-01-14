@@ -1,0 +1,32 @@
+{
+    "noticias": [
+        {
+            "noticia_1": {
+                "titulo": "Curso Cuidado Integral",
+                "subtitulo": "Inicio: 24 de Noviembre",
+                "contenido": "Curso semipresencial de 120 horas de duración que busca contribuir al fortalecimiento y puesta en práctica de los conocimientos,actitudes y habilidades relacionadas con el abordaje y manejo integral de los usuarios adultos mayores que se atienden en atención primaria."
+            }
+        },
+        {
+            "noticia_1": {
+                "titulo": "Tendencias: La Risoterapia",
+                "subtitulo": "El mágico poder tonificante de la risa",
+                "contenido": "Talleres, apoyo económico y programas de salud buscan potenciar el envejecimiento positivo."
+            }
+        },
+        {
+            "noticia_1": {
+                "titulo": "Tendencias: La Risoterapia",
+                "subtitulo": "El mágico poder tonificante de la risa",
+                "contenido": "La risoterapia o terapia de risas aporta grandes beneficios en la salud física y emocional del adulto mayor, especialmente para afrontar los momentos de #soledad y depresión tan comunes en la vejez."
+            }
+        },
+        {
+            "noticia_1": {
+                "titulo": "Coronavirus en el Mundo",
+                "subtitulo": "¿Puede el covid-19 convertirse en un virus endémico?",
+                "contenido": "Todavía se desconoce mucho sobre la covid-19 y el virus que la causa, el SARS-Cov-2, pero como han mostrado otras infecciones en el pasado, es muy probable que este coronavirus continúe transmitiéndose, incluso si contamos con una vacuna."
+            }
+        }
+    ]
+}

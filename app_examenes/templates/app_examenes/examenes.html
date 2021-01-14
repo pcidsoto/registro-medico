@@ -1,0 +1,515 @@
+{% extends 'base_examenes.html' %}
+{% load static %}
+
+{% block titulo %}Examenes{% endblock %}
+
+{% block navbar %} {{block.super}} {% endblock%}
+{% block sidebar %} {{block.super }} {% endblock%}
+
+
+{% block encabezado-principal %}
+    <!-- Aqui va tu codigo -->
+    <div class="card">
+        <form method = "POST"> 
+            {% csrf_token %}
+            {{ seleccionar }} 
+            <input type = "submit" value = "Ver" class="btn btn-primary btn-sm"> 
+        </form> 
+        <h3 class="card-header">{{nombre}} {{apellido}}</h3>
+        <div class="card-body">
+        </div>
+        <div id="agregar_examenes">
+            <div class="row" style="padding-bottom: 1em;">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-placement="top" title="Tooltip on top" style="margin: 0.25em; width: 90%;text-align: center;" id="AddHemograma" data-target="#nuevo_hemograma"> Registrar hemograma
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-placement="right" title="Tooltip on right" style="margin: 0.25em; width: 90%;text-align: center;" id="AddPlipidico" data-target="#nuevo_plipidico"> Registrar perfil lipídico
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-placement="right" title="Tooltip on right" style="margin: 0.25em; width: 90%;text-align: center;" id="AddPbioquimico" data-target="#nuevo_pbioquimico"> Registrar perfil bioquímico
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-placement="left" title="Tooltip on left" style="margin: 0.25em; width: 95%;" id="AddParterial" data-target="#nuevo_parterial"> Registrar presión arterial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL_HEMOGRAMA-->
+    <div class="modal fade" id="nuevo_hemograma" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Registrar examen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" class="form-control" id="fecha">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="hematocrito" placeholder="Hematocrito">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="hemoglobina" placeholder="Hemoglobina">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" onclick='nuevo_hemograma()'>Agregar examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL HEMOGRAMA-->
+    <!--MODAL PERFIL LIPIDICO-->
+    <div class="modal fade" id="nuevo_plipidico" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Registrar examen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" class="form-control" id="fecha1" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="colesterol" placeholder="Colesterol">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="bilirrubina" placeholder="Bilirrubina">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" onclick='nuevo_plipidico()'>Agregar examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL PERFIL LIPIDICO-->
+    <!--MODAL PERFIL BIOQUIMICO-->
+    <div class="modal fade" id="nuevo_pbioquimico" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Registrar examen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" class="form-control" id="fecha3" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="PTD" placeholder="PTD">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="TBR" placeholder="TBR">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" onclick='nuevo_pbioquimico()'>Agregar examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL PERFIL BIOQUIMICO-->
+    <!--MODAL PRESION ARTERIAL-->
+    <div class="modal fade" id="nuevo_parterial" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Registrar examen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" class="form-control" id="fecha4" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="f_mañana" placeholder="Frecuencia matutina">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="f_tarde" placeholder="Frecuencia nocturna">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" onclick='nuevo_parterial()'>Agregar examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block graficos %}
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-hemograma-tab" data-toggle="tab" href="#nav-hemograma" role="tab" aria-controls="nav-hemograma" aria-selected="true">Hemograma</a>
+            <a class="nav-item nav-link" id="nav-plipidico-tab" data-toggle="tab" href="#nav-plipidico" role="tab" aria-controls="nav-plipidico" aria-selected="false">Perfil lipídico</a>
+            <a class="nav-item nav-link" id="nav-pbioquimico-tab" data-toggle="tab" href="#nav-pbioquimico" role="tab" aria-controls="nav-pbioquimico" aria-selected="false">Perfil bioquímico</a>
+            <a class="nav-item nav-link" id="nav-parterial-tab" data-toggle="tab" href="#nav-parterial" role="tab" aria-controls="nav-parterial" aria-selected="false">Presión arterial</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-hemograma" role="tabpanel" aria-labelledby="nav-hemograma-tab">
+            <!---->
+            <div class="table-responsive">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Hematocrito</th>
+                                        <th>Hemoglobina</th>
+                                    </tr>
+                                </thead>
+                                {% for elemento in hemograma %}
+                                {% for clave, valor in elemento.items %}                    
+                                <tbody id="tabla_hemograma">
+                                    <tr>
+                                        <td>{{clave}}</td>
+                                        <td>{{valor.Hematocrito}}</td>
+                                        <td>{{valor.Hemoglobina}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <figure class="highcharts-figure">
+                                <div id="container-hemograma"></div>
+                            </figure>
+                                                    </div>
+                        <script type="application/javascript">
+Highcharts.chart('container-hemograma', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Serie de tiempo hemograma'
+    },
+    subtitle: {
+        text: 'Source: Clinica'
+    },
+    xAxis: {
+        categories:
+        {{hemograma_grafico.fechas|safe}}
+        ,
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'ml'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Hematocrito',
+        data: {{ hemograma_grafico.Hematocrito }}
+
+    }, {
+        name: 'Hemoglobina',
+        data: {{ hemograma_grafico.Hemoglobina }}
+
+    }]
+});
+                        </script>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-plipidico" role="tabpanel" aria-labelledby="nav-plipidico-tab">
+            <!---->
+            <div class="table-responsive">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Colesterol</th>
+                                        <th>Bilirrubina</th>
+                                    </tr>
+                                </thead>
+                                {% for elemento in perfil_lipidico %}
+                                {% for clave, valor in elemento.items %}                    
+                                <tbody id="tabla_plipidico">
+                                    <tr>
+                                        <td>{{clave}}</td>
+                                        <td>{{valor.Colesterol}}</td>
+                                        <td>{{valor.Bilirrubina}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <figure class="highcharts-figure">
+                                <div id="container-plipidico"></div>
+                            </figure>
+                                                    </div>
+                        <script type="application/javascript">
+Highcharts.chart('container-plipidico', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Serie de tiempo Perfil lipidico'
+    },
+    subtitle: {
+        text: 'Source: Clinica'
+    },
+    xAxis: {
+        categories:  {{plipidico_grafico.fechas|safe}},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'ml'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Colesterol',
+        data: {{ plipidico_grafico.colesterol }}
+
+    }, {
+        name: 'Bilirrubina',
+        data: {{ plipidico_grafico.bilirrubina }}
+
+    }]
+});
+                        </script>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-pbioquimico" role="tabpanel" aria-labelledby="nav-pbioquimico-tab">
+            <!---->
+            <div class="table-responsive">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>PTD</th>
+                                        <th>TBR</th>
+                                    </tr>
+                                </thead>
+                                {% for elemento in perfil_bioquimico %}
+                                {% for clave, valor in elemento.items %}                    
+                                <tbody id="tabla_pbioquimico">
+                                    <tr>
+                                        <td>{{clave}}</td>
+                                        <td>{{valor.PTD}}</td>
+                                        <td>{{valor.TBR}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <figure class="highcharts-figure">
+                                <div id="container-pbioquimico"></div>
+                            </figure>
+                                                    </div>
+                        <script type="application/javascript">
+Highcharts.chart('container-pbioquimico', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Serie de tiempo perfil bioquímico'
+    },
+    subtitle: {
+        text: 'Source: Clinica'
+    },
+    xAxis: {
+        categories: {{pbioquimico_grafico.fechas|safe}},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'PTD',
+        data: {{ pbioquimico_grafico.PTD }}
+
+    }, {
+        name: 'TBR',
+        data: {{ pbioquimico_grafico.TBR }}
+
+    }]
+});
+                        </script>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-parterial" role="tabpanel" aria-labelledby="nav-parterial-tab">
+            <!---->
+            <div class="table-responsive">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Frecuencia mañana</th>
+                                        <th>Frecuencia noche</th>
+                                    </tr>
+                                </thead>
+                                {% for elemento in presion_arterial %}
+                                {% for clave, valor in elemento.items %}                    
+                                <tbody id="tabla_parterial">
+                                    <tr>
+                                        <td>{{clave}}</td>
+                                        <td>{{valor.F_manana}}</td>
+                                        <td>{{valor.F_tarde}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <figure class="highcharts-figure">
+                                <div id="container1"></div>
+                            </figure>
+                                                    </div>
+                        <script type="application/javascript">
+Highcharts.chart('container1', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Serie de tiempo presion arterial'
+    },
+    subtitle: {
+        text: 'Source: Clinica'
+    },
+    xAxis: {
+        categories: {{parterial_grafico.fechas|safe}},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Frecuencia mañana',
+        data: {{ parterial_grafico.F_manana }}
+
+    }, {
+        name: 'Frecuencia noche',
+        data: {{ parterial_grafico.F_tarde }}
+
+    }]
+});
+                        </script>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block footer %} {{block.super}} {% endblock %}

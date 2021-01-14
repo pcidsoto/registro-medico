@@ -1,0 +1,19 @@
+#header {
+    padding-top: 2em;
+}
+
+#contenido_medicamentos {
+    padding: 4em;
+}
+
+#nuevo_med {
+    margin: 1em;
+    border: solid;
+    padding: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+    #contenido_medicamentos {
+        padding: 1em;
+    }
+}

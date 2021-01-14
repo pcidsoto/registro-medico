@@ -1,0 +1,163 @@
+{
+    "pacientes": [
+        {
+            "21.345.678-9": {
+                "datos_personales": {
+                    "nombre": "juanita",
+                    "apellido": "perez",
+                    "edad": 40
+                },
+                "datos_contacto": {
+                    "direccion": "xxxxxx",
+                    "email": "xxxx@xxx.xxx",
+                    "telefono": "+569xxxxxxxx"
+                },
+                "password": "12345",
+                "examenes": {
+                    "Hemograma": [
+                        {
+                            "01/01/2020": {
+                                "Hematocrito": 38,
+                                "Hemoglobina": 14
+                            },
+                            "01/02/2020": {
+                                "Hematocrito": 39,
+                                "Hemoglobina": 20
+                            },
+                            "01/03/2020": {
+                                "Hematocrito": 37,
+                                "Hemoglobina": 17
+                            }
+                        }
+                    ],
+                    "perfil_lipidico": [
+                        {
+                            "01/01/2020": {
+                                "Colesterol": 38,
+                                "Bilirrubina": 14
+                            },
+                            "01/02/2020": {
+                                "Colesterol": 38,
+                                "Bilirrubina": 14
+                            },
+                            "01/03/2020": {
+                                "Colesterol": 38,
+                                "Bilirrubina": 14
+                            }
+                        }
+                    ],
+                    "perfil_bioquimico": [
+                        {
+                            "01/01/2020": {
+                                "PTD": 38,
+                                "TBR": 14
+                            },
+                            "02/01/2020": {
+                                "PTD": 36,
+                                "TBR": 16
+                            },
+                            "03/01/2020": {
+                                "PTD": 37,
+                                "TBR": 12
+                            }
+                        }
+                    ],
+                    "presion_arterial": [
+                        {
+                            "01/01/2020": {
+                                "F_manana": 138,
+                                "F_tarde": 146
+                            },
+                            "02/01/2020": {
+                                "F_manana": 138,
+                                "F_tarde": 146
+                            },
+                            "03/01/2020": {
+                                "F_manana": 148,
+                                "F_tarde": 156
+                            }
+                        }
+                    ]
+                },
+                "medicamentos": {
+                    "recetas": [
+                        {
+                            "fecha": "01/01/2020",
+                            "medicamentos": [
+                                {
+                                    "nombre": "paracetamol",
+                                    "hora": "9:30",
+                                    "dosis": "100mg"
+                                },
+                                {
+                                    "nombre": "Natastina",
+                                    "hora": "9:00",
+                                    "dosis": "20mg"
+                                }
+                            ]
+                        },
+                        {
+                            "fecha": "02/01/2020",
+                            "medicamentos": [
+                                {
+                                    "nombre": "aspirina",
+                                    "hora": "10:00",
+                                    "dosis": "10mg"
+                                },
+                                {
+                                    "nombre": "Metformina",
+                                    "hora": "12:00",
+                                    "dosis": "200mg"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "1.111.111-1": {
+                "datos_personales": {
+                    "nombre": "Ana",
+                    "apellido": "perez",
+                    "edad": "",
+                    "f_nacimiento": "01-02-1990"
+                },
+                "datos_contacto": {},
+                "password": "12345",
+                "examenes": {
+                    "Hemograma": [
+                        {
+                            "01/01/2020": {
+                                "Hematocrito": 38,
+                                "Hemoglobina": 14
+                            },
+                            "01/02/2020": {
+                                "Hematocrito": 39,
+                                "Hemoglobina": 20
+                            },
+                            "01/03/2020": {
+                                "Hematocrito": 37,
+                                "Hemoglobina": 17
+                            },
+                            "01/04/2020": {
+                                "Hematocrito": 27,
+                                "Hemoglobina": 37
+                            },
+                            "01/05/2020": {
+                                "Hematocrito": 17,
+                                "Hemoglobina": 47
+                            }
+                        }
+                    ],
+                    "perfil_lipidico": [],
+                    "perfil_bioquimico": [],
+                    "presion_arterial": []
+                },
+                "medicamentos": {
+                    "recetas": []
+                }
+            }
+        }
+    ]
+}

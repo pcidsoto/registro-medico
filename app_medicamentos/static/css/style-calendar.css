@@ -1,0 +1,37 @@
+/*CSS CALENDARIO*/
+.container-header{
+    margin-top: 50px;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+.btn-row{
+    margin-bottom: 50px;
+}
+
+.calendar{
+    border:1px;
+    border-color: black;
+    background: red;
+}
+
+.col{
+    border-style: solid;
+}
+
+.calendar-container{
+    background-color: white;
+}
+
+.mes-anterior{
+    color: gray;
+}
+
+.tabs{
+    padding-top: 30px;
+}
+
+
+
